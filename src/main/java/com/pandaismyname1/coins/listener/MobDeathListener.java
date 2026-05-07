@@ -8,7 +8,6 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.math.vector.Vector3d;
 import com.hypixel.hytale.math.vector.Vector3f;
-import com.hypixel.hytale.server.core.entity.UUIDComponent;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.AllLegacyLivingEntityTypesQuery;
@@ -110,21 +109,20 @@ public class MobDeathListener extends DeathSystems.OnDeathSystem {
 
     private List<ItemStack> calculateCoinStacks(long value) {
         List<ItemStack> stacks = new ArrayList<>();
-        long remaining = value;
-
-        // Start from the most valuable coin
-        Coin[] coins = Coin.values();
-        for (int i = coins.length - 1; i >= 0; i--) {
-            Coin coin = coins[i];
-            long coinValue = coin.getValue();
-            if (remaining >= coinValue) {
-                int count = (int) (remaining / coinValue);
-                // Hytale item stacks might have a limit, but for coins let's assume standard stack sizes or just multiple stacks if needed
-                // For simplicity, let's just create one stack per coin type if it fits in int
-                stacks.add(new ItemStack(coin.getItemId(), count));
-                remaining %= coinValue;
-            }
+        Coin gold = Coin.GOLD;
+        long goldValue = gold.getValue();
+        if (goldValue <= 0) {
+            return stacks;
         }
+
+        // Convert total value to only GOLD coins, rounding up to avoid zero drops for low values.
+        long goldCount = Math.max(1L, (value + goldValue - 1) / goldValue);
+        while (goldCount > 0) {
+            int stackCount = (int) Math.min(goldCount, Integer.MAX_VALUE);
+            stacks.add(new ItemStack(gold.getItemId(), stackCount));
+            goldCount -= stackCount;
+        }
+
         return stacks;
     }
 }
