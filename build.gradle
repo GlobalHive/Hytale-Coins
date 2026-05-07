@@ -8,7 +8,7 @@ repositories {
 }
 
 ext {
-    hytaleHome = "${System.getProperty("user.home")}/AppData/Roaming/Hytale"
+    hytaleHome = "/home/globalhive/.var/app/com.hypixel.HytaleLauncher/data/Hytale"
 }
 
 java {

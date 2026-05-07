@@ -18,17 +18,14 @@ import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.entity.entities.player.pages.InteractiveCustomUIPage;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.transaction.ItemStackTransaction;
-import com.hypixel.hytale.server.core.ui.ItemGridSlot;
 import com.hypixel.hytale.server.core.ui.builder.EventData;
 import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class WalletPage extends InteractiveCustomUIPage<WalletPage.WalletEventData> {
     private List<Coin> displayedCoins = new ArrayList<>();
@@ -97,7 +94,7 @@ public class WalletPage extends InteractiveCustomUIPage<WalletPage.WalletEventDa
                     Player playerComponent = (Player) store.getComponent(ref, Player.getComponentType());
                     if (playerComponent != null) {
                         ItemStack toAdd = new ItemStack(coin.getItemId(), toWithdraw);
-                        ItemStackTransaction transaction = playerComponent.getInventory().getCombinedEverything().addItemStack(toAdd);
+                        ItemStackTransaction transaction = playerComponent.getInventory().getCombinedHotbarFirst().addItemStack(toAdd);
                         
                         ItemStack remainder = transaction.getRemainder();
                         if (remainder != null && !remainder.isEmpty()) {

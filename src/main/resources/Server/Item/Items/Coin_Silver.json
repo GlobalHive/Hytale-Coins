@@ -3,21 +3,12 @@
     "Name": "items.Coin_Silver.name",
     "Description": "items.Coin_Silver.description"
   },
-  "MaxStack": 100,
+  "MaxStack": 9999,
   "Icon": "Icons/ItemsGenerated/Coin_Silver.png",
   "Quality": "Common",
   "Categories": [
     "Blocks.Rocks"
   ],
-  "Interactions": {
-    "Secondary": {
-      "Interactions": [
-        {
-          "Type": "DepositCoin"
-        }
-      ]
-    }
-  },
   "Texture": "Items/Coin_Silver.png",
   "Model": "Items/Coin.blockymodel",
   "Scale": 2

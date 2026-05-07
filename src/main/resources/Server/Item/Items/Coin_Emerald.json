@@ -3,21 +3,12 @@
     "Name": "items.Coin_Emerald.name",
     "Description": "items.Coin_Emerald.description"
   },
-  "MaxStack": 100,
+  "MaxStack": 9999,
   "Icon": "Icons/ItemsGenerated/Coin_Emerald.png",
   "Quality": "Common",
   "Categories": [
     "Blocks.Rocks"
   ],
-  "Interactions": {
-    "Secondary": {
-      "Interactions": [
-        {
-          "Type": "DepositCoin"
-        }
-      ]
-    }
-  },
   "Texture": "Items/Coin_Emerald.png",
   "Model": "Items/Coin.blockymodel",
   "Scale": 2

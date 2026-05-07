@@ -3,7 +3,7 @@
     "Name": "items.Coin_Gold.name",
     "Description": "items.Coin_Gold.description"
   },
-  "MaxStack": 100,
+  "MaxStack": 9999,
   "Icon": "Icons/ItemsGenerated/Coin_Gold.png",
   "Quality": "Common",
   "Categories": [

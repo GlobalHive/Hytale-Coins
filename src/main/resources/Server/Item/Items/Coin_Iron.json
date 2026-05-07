@@ -3,21 +3,12 @@
     "Name": "items.Coin_Iron.name",
     "Description": "items.Coin_Iron.description"
   },
-  "MaxStack": 100,
+  "MaxStack": 9999,
   "Icon": "Icons/ItemsGenerated/Coin_Iron.png",
   "Quality": "Common",
   "Categories": [
     "Blocks.Rocks"
   ],
-  "Interactions": {
-    "Secondary": {
-      "Interactions": [
-        {
-          "Type": "DepositCoin"
-        }
-      ]
-    }
-  },
   "Texture": "Items/Coin_Iron.png",
   "Model": "Items/Coin.blockymodel",
   "Scale": 2

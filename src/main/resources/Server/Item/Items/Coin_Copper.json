@@ -3,21 +3,12 @@
     "Name": "items.Coin_Copper.name",
     "Description": "items.Coin_Copper.description"
   },
-  "MaxStack": 100,
+  "MaxStack": 9999,
   "Icon": "Icons/ItemsGenerated/Coin_Copper.png",
   "Quality": "Common",
   "Categories": [
     "Blocks.Rocks"
   ],
-  "Interactions": {
-    "Secondary": {
-      "Interactions": [
-        {
-          "Type": "DepositCoin"
-        }
-      ]
-    }
-  },
   "Texture": "Items/Coin_Copper.png",
   "Model": "Items/Coin.blockymodel",
   "Scale": 2
