@@ -15,6 +15,7 @@ import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.inventory.container.ItemContainer;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.CooldownHandler;
 import com.hypixel.hytale.server.core.modules.interaction.interaction.config.SimpleInstantInteraction;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 
 import com.hypixel.hytale.server.core.entity.UUIDComponent;
@@ -50,7 +51,7 @@ public class DepositCoinInteraction extends SimpleInstantInteraction {
             wallet.add(value);
 
             // Inform the user
-            Player player = (Player) context.getCommandBuffer().getComponent(ref, Player.getComponentType());
+            PlayerRef player = (PlayerRef) context.getCommandBuffer().getComponent(ref, PlayerRef.getComponentType());
             if (player != null) {
                 player.sendMessage(Message.empty()
                         .insert(Message.empty().insert("[Wallet] ").color("GOLD"))

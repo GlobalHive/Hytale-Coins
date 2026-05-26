@@ -6,8 +6,7 @@ import com.hypixel.hytale.component.Holder;
 import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
-import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
 import com.hypixel.hytale.server.core.modules.entity.AllLegacyLivingEntityTypesQuery;
@@ -25,6 +24,9 @@ import com.pandaismyname1.coins.config.ConfigManager;
 import com.pandaismyname1.coins.economy.Coin;
 
 import javax.annotation.Nonnull;
+
+import org.joml.Vector3d;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,10 +100,10 @@ public class MobDeathListener extends DeathSystems.OnDeathSystem {
         TransformComponent transform = (TransformComponent) store.getComponent(ref, TransformComponent.getComponentType());
         if (transform == null) return;
 
-        Vector3d position = transform.getPosition().clone().add(0, 1, 0);
+        Vector3d position = transform.getPosition().add(0, 1, 0);
         
         HeadRotation headRotationComponent = (HeadRotation) store.getComponent(ref, HeadRotation.getComponentType());
-        Vector3f rotation = (headRotationComponent != null) ? headRotationComponent.getRotation() : new Vector3f(0, 0, 0);
+        Rotation3f rotation = (headRotationComponent != null) ? headRotationComponent.getRotation() : new Rotation3f(0, 0, 0);
 
         Holder<EntityStore>[] drops = ItemComponent.generateItemDrops(store, coinsToDrop, position, rotation);
         commandBuffer.addEntities(drops, AddReason.SPAWN);

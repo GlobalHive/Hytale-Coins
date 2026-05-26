@@ -10,8 +10,8 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EcsEvent;
 import com.hypixel.hytale.component.system.EntityEventSystem;
-import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.math.vector.Rotation3f;
+import com.hypixel.hytale.math.vector.Vector3iUtil;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.BreakBlockEvent;
@@ -22,6 +22,9 @@ import com.pandaismyname1.coins.config.ConfigManager;
 import com.pandaismyname1.coins.economy.Coin;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import org.joml.Vector3d;
+
 import java.util.Collections;
 import java.util.Random;
 
@@ -67,8 +70,8 @@ public class CropHarvestListener extends EntityEventSystem {
 
         // Reward with a copper coin
         ItemStack copperCoin = new ItemStack(Coin.COPPER.getItemId(), 1);
-        Vector3d position = breakEvent.getTargetBlock().toVector3d().add(0.5, 0.5, 0.5);
-        Vector3f rotation = new Vector3f(0, 0, 0);
+        Vector3d position = Vector3iUtil.toVector3d(breakEvent.getTargetBlock()).add(0.5, 0.5, 0.5);
+        Rotation3f rotation = new Rotation3f(0, 0, 0);
 
         Holder<EntityStore>[] drops = ItemComponent.generateItemDrops(store, Collections.singletonList(copperCoin), position, rotation);
         commandBuffer.addEntities(drops, AddReason.SPAWN);
