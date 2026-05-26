@@ -11,7 +11,6 @@ import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
-import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -43,7 +42,7 @@ public class PayCommand extends AbstractCommand {
             return CompletableFuture.completedFuture(null);
         }
 
-        Player sender = (Player) commandContext.sender();
+        PlayerRef sender = commandContext.senderAs(PlayerRef.class);
         PlayerRef recipientRef = (PlayerRef) commandContext.get(this.playerArg);
         Integer amount = (Integer) commandContext.get(this.amountArg);
 

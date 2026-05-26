@@ -7,6 +7,7 @@ import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.entity.entities.Player;
+import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.concurrent.CompletableFuture;
@@ -25,10 +26,15 @@ public class WalletCommand extends AbstractCommand {
             return CompletableFuture.completedFuture(null);
         }
 
-        Player player = (Player) commandContext.sender();
-        
+        PlayerRef playerRef = commandContext.senderAs(PlayerRef.class);
+        Player player = playerRef.getReference().getStore().getComponentConcurrent(playerRef.getReference(), Player.getComponentType());
+        if (player == null) {
+            commandContext.sendMessage(Message.empty().insert("Could not open wallet right now. Please try again.").color("RED"));
+            return CompletableFuture.completedFuture(null);
+        }
+
         // Open the wallet UI
-        player.getPageManager().openCustomPage(player.getReference(), player.getReference().getStore(), new WalletPage(player.getPlayerRef()));
+        player.getPageManager().openCustomPage(playerRef.getReference(), playerRef.getReference().getStore(), new WalletPage(playerRef));
 
         return CompletableFuture.completedFuture(null);
     }
