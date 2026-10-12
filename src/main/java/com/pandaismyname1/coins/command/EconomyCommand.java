@@ -1,7 +1,6 @@
 package com.pandaismyname1.coins.command;
 
 import com.pandaismyname1.coins.api.CoinsAPIProvider;
-import com.pandaismyname1.coins.config.ConfigManager;
 import com.pandaismyname1.coins.economy.Wallet;
 import com.pandaismyname1.coins.economy.WalletManager;
 
@@ -10,14 +9,11 @@ import com.hypixel.hytale.server.core.command.system.AbstractCommand;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
 import com.hypixel.hytale.server.core.command.system.arguments.system.RequiredArg;
 import com.hypixel.hytale.server.core.command.system.arguments.types.ArgTypes;
-import com.hypixel.hytale.server.core.command.system.arguments.types.EnumArgumentType;
-import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.concurrent.CompletableFuture;
 
-@SuppressWarnings("deprecation")
 public class EconomyCommand extends AbstractCommand {
     public EconomyCommand() {
         super("economy", "Manage player economies");
